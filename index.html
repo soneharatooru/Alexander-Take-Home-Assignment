@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alexander Take Home Assignment</title>s
+  <title>Alexander Take Home Assignment</title>
   <link rel="stylesheet" href="main.css">
 </head>
 <body>
@@ -195,6 +195,32 @@
             })}
         </div>
         <div className="payment-container">
+            <div className="order-summary">
+          <h2>Order Summary</h2>
+          <hr className="split-line"></hr>
+          <div className="summary">
+            <div>
+                <label className="sum-lables">Total miles</label>
+                <label className="sum-lables">GST/HST</label>
+            </div>
+            <div className="values">
+                <label>{clickedData && clickedData.amount}</label>
+                
+    
+                <label>${this.state.tax}</label>
+          </div>
+          </div>
+          <hr className="split-line"></hr>
+          <div className="summary sum-total">
+            <div>
+                <label className="sum-lables">Total cost</label>
+            </div>
+            <div className="values">
+                
+                <label>{clickedData && clickedData.cost.toFixed(2)}</label>
+          </div>
+          </div>
+        </div>
         <div className="payment-section">
           <h2>Payment Details</h2>
           <p>We accept all major credit cards. Please ensure that you enter your details exactly as they appear on your credit card statement. All fields are required unless indicated.</p>
@@ -277,32 +303,7 @@
           </div>
             </form>
         </div>
-        <div className="order-summary">
-          <h2>Order Summary</h2>
-          <hr className="split-line"></hr>
-          <div className="summary">
-            <div>
-                <label className="sum-lables">Total miles</label>
-                <label className="sum-lables">GST/HST</label>
-            </div>
-            <div className="values">
-                <label>{clickedData && clickedData.amount}</label>
-                
-    
-                <label>${this.state.tax}</label>
-          </div>
-          </div>
-          <hr className="split-line"></hr>
-          <div className="summary sum-total">
-            <div>
-                <label className="sum-lables">Total cost</label>
-            </div>
-            <div className="values">
-                
-                <label>{clickedData && clickedData.cost.toFixed(2)+this.state.tax}</label>
-          </div>
-          </div>
-        </div>
+        
       </div>
       </div>
     );
