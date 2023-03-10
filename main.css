@@ -109,6 +109,7 @@ margin-bottom: 1.5rem;
 width: 80%;
 }
 
+.billing-address-form select,
 .billing-address-form input[type="text"] {
 width: 100%;
 padding: 0.5rem;
@@ -120,16 +121,6 @@ margin-top: 0.5rem;
 height: 50px;
 }
 
-.billing-address-form select {
-width: 100%;
-padding: 0.5rem;
-font-size: 1rem;
-border-radius: 0.25rem;
-border: 1px solid #ccc;
-box-sizing: border-box;
-margin-top: 0.5rem;
-height: 50px;
-}
 
 select:disabled {
 background-color: #e0e0e0;
@@ -192,8 +183,6 @@ cursor: pointer;
 width: 50%;
 height: 50px;
 }
-
-
 
 .order-summary {
   width: 35%;
