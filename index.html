@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexander Take Home Assignment</title>s
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>   
+  <script type="text/babel">
+    class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        cardData: [
+        {
+            "type": "buy",
+            "amount": 2000,
+            "cost": 250.00
+        },
+        {
+            "type": "buy",
+            "amount": 4000,
+            "cost": 450.00
+        },
+        {
+            "type": "buy",
+            "amount": 7000,
+            "cost": 600.00
+        }
+        ],
+        clickedButton: null,
+      agree: false,
+      cardNumber: '',
+      cardName: '',
+      expirationDate: '',
+      cvv: '',
+      firstName: '',
+      lastName: '',
+      company: '',
+      address: '',
+      address2: '',
+      city: '',
+      state: '',
+      postalCode: '',
+      country: '',
+      phoneNumber: '',
+      email: '',
+    clickedData: { "type": "buy", "amount": 0, "cost": 0.00 },
+    tax: 0.00,
+    country: '',
+      state: '',
+      countries: [
+        {
+          name: 'USA',
+          states: [
+            'Alabama',
+            'Alaska',
+            'Arizona',
+            'Arkansas',
+            'California',
+            'Colorado',
+            'Connecticut',
+            'Delaware',
+            'Florida',
+            'Georgia',
+            'Hawaii',
+            'Idaho',
+            'Illinois',
+            'Indiana',
+            'Iowa',
+            'Kansas',
+            'Kentucky',
+            'Louisiana',
+            'Maine',
+            'Maryland',
+            'Massachusetts',
+            'Michigan',
+            'Minnesota',
+            'Mississippi',
+            'Missouri',
+            'Montana',
+            'Nebraska',
+            'Nevada',
+            'New Hampshire',
+            'New Jersey',
+            'New Mexico',
+            'New York',
+            'North Carolina',
+            'North Dakota',
+            'Ohio',
+            'Oklahoma',
+            'Oregon',
+            'Pennsylvania',
+            'Rhode Island',
+            'South Carolina',
+            'South Dakota',
+            'Tennessee',
+            'Texas',
+            'Utah',
+            'Vermont',
+            'Virginia',
+            'Washington',
+            'West Virginia',
+            'Wisconsin',
+            'Wyoming'
+          ]
+        },
+        {
+          name: 'Canada',
+          states: [
+            'Alberta',
+            'British Columbia',
+            'Manitoba',
+            'New Brunswick',
+            'Newfoundland and Labrador',
+            'Northwest Territories',
+            'Nova Scotia',
+            'Nunavut',
+            'Ontario',
+            'Prince Edward Island',
+            'Quebec',
+            'Saskatchewan',
+            'Yukon'
+          ]
+        }
+      ]
+    };
+  }
+
+  handleClick = (buttonId) => {
+    this.setState({ clickedButton: buttonId });
+    this.setState({ clickedButton: buttonId });
+    this.setState({ clickedButton: buttonId });
+  }
+
+  handleAgreeChange = () => {
+    this.setState(prevState => ({ agree: !prevState.agree }));
+  }
+
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  handleCountryChange = (event) => {
+    this.setState({ country: event.target.value, state: '' });
+  }
+
+  handleStateChange = (event) => {
+    this.setState({ state: event.target.value });
+  }
+
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    alert('You have submitted');
+  }
+
+  calculateTax = () => {
+    const { clickedData } = this.state;
+    const { country } = this.state;
+    const { state } = this.state;
+    const tax = country === 'USA' ? clickedData.cost * 0.08 : 0.00;
+    this.setState({ tax:tax });
+  }
+
+
+  render() {
+    const { clickedButton } = this.state;
+    const { agree } = this.state;
+    const { cardNumber, cardName, expirationDate, cvv } = this.state;
+    const { address, address2, city, state, postalCode, country } = this.state;
+    const { phoneNumber, email } = this.state;
+    const clickedData = this.state.cardData.find(data => data.amount.toString() === clickedButton)|| { "type": "buy", "amount": 0, "cost": 0.00 };
+    const selectedCountry = this.state.countries.find(c => c.name === country);
+    const states = selectedCountry ? selectedCountry.states : [];
+
+    return (
+      <div className="container">
+        <h1>Get your rewards faster. Buy, Gift or Transfer Miles today!</h1>
+        <div className="button-container">
+            {this.state.cardData.map((card, index) => {
+                return (
+                        <button key={index} className={`button-options button ${clickedButton === card.amount.toString() ? 'clicked' : ''}`} onClick={() => this.handleClick(card.amount.toString())}>
+                        <div>Buy {card.amount} miles</div>
+                        <div>${card.cost}</div>
+                    </button>
+                )
+            })}
+        </div>
+        <div className="payment-container">
+        <div className="payment-section">
+          <h2>Payment Details</h2>
+          <p>We accept all major credit cards. Please ensure that you enter your details exactly as they appear on your credit card statement. All fields are required unless indicated.</p>
+          <form onSubmit={this.handleSubmit}>
+          <div className="credit-card-inputs">
+            <div className="credit-card-form">
+                <label id="cardName">
+                    Cardholder Name:
+                <input type="text" name="cardName" value={cardName} onChange={this.handleInputChange} />
+                </label>
+                <label id="cardNumber">
+                    Card Number:
+                <input type="text" name="cardNumber" value={cardNumber} onChange={this.handleInputChange} />
+                </label>
+            
+            <label id="cardexpirationDate">
+            Expiration date:
+            <input type="text" name="expirationDate" placeholder="MMYY" value={expirationDate} onChange={this.handleInputChange} />
+            </label>
+            <label id="cardcvv">
+            CVV:
+            <input type="text" name="cvv" value={cvv} onChange={this.handleInputChange} />
+            </label>
+            </div>
+          </div>
+          <div className="billing-address">
+            <h2> Billing Address</h2>
+            <div className="billing-address-form">
+        <label>
+          Street Address
+          <input type="text" name="address" value={address} onChange={this.handleInputChange} />
+        </label>
+        <label>
+          Apt, Suite, Unit Number (Optional)
+          <input type="text" name="address2" value={address2} onChange={this.handleInputChange} />
+        </label>
+        <label>
+          City / Town
+          <input type="text" name="city" value={city} onChange={this.handleInputChange} />
+        </label>
+        
+        <label htmlFor="country">Country
+        <select id="country" value={country} onChange={this.handleCountryChange}>
+          <option value="">Select a country</option>
+          {this.state.countries.map((c, index) => (
+            <option key={index} value={c.name}>{c.name}</option>
+          ))}
+        </select>
+        </label>
+        <label htmlFor="state">State / province
+        <select id="state" value={state} onChange={this.handleStateChange} disabled={!selectedCountry}>
+          <option value="">Select a state or province</option>
+          {states.map((s, index) => (
+            <option key={index} value={s}>{s}</option>
+          ))}
+        </select>
+        </label>
+      
+        <label>
+          Zip/ Postal Code
+          <input type="text" name="postalCode" value={postalCode} onChange={this.handleInputChange} />
+        </label>
+        <label>
+              Phone Number
+              <input type="text" name="phoneNumber" value={phoneNumber} onChange={this.handleInputChange} />
+            </label>
+            <label>
+              Email receipt to
+              <input type="text" name="email" value={email} onChange={this.handleInputChange} />
+            </label>
+      </div>
+          </div>
+          <div className="agreement">
+            <input type="checkbox" name="terms" value="agree" checked={agree} onChange={this.handleAgreeChange} />
+            <label htmlFor="terms">I agree to the <a href="https://www.points.com/legal/terms/">terms &amp; conditions</a>
+          </label>
+          </div>
+          <div className="buy-button">
+            <button type="submit">Buy Miles</button>
+          </div>
+            </form>
+        </div>
+        <div className="order-summary">
+          <h2>Order Summary</h2>
+          <hr className="split-line"></hr>
+          <div className="summary">
+            <div>
+                <label className="sum-lables">Total miles</label>
+                <label className="sum-lables">GST/HST</label>
+            </div>
+            <div className="values">
+                <label>{clickedData && clickedData.amount}</label>
+                
+    
+                <label>${this.state.tax}</label>
+          </div>
+          </div>
+          <hr className="split-line"></hr>
+          <div className="summary sum-total">
+            <div>
+                <label className="sum-lables">Total cost</label>
+            </div>
+            <div className="values">
+                
+                <label>{clickedData && clickedData.cost.toFixed(2)+this.state.tax}</label>
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    );
+  }
+}
+
+
+    
+    // Render React component
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>

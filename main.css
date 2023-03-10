@@ -1,0 +1,247 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+h1{
+    font-size: 30pt;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0px 60px 0px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33.33%;
+  font-size: 24px;
+  
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  margin: 10px;
+  cursor: pointer;
+  flex-direction: column;
+}
+
+.button.clicked {
+    background-color: black; /* new background color */
+    color: #fff; /* new text color */
+}
+
+.button-container {
+  display: flex;
+  color: #fff;
+}
+
+.button-container div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.button-options {
+  border-color: black;
+  border: 1px solid black; /* new border property */
+  height: 100px;
+  color: black;
+  background-color: #fff;
+}
+.payment-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.payment-section {
+  width: 60%;
+}
+.credit-card-form {
+display: flex;
+flex-direction: column;
+margin-bottom: 1rem;
+}
+
+.credit-card-form label {
+margin-bottom: 1.5rem;
+}
+
+.credit-card-form input[type="text"] {
+width: 100%;
+padding: 0.5rem;
+font-size: 1rem;
+border-radius: 0.25rem;
+border: 1px solid #ccc;
+box-sizing: border-box;
+margin-top: 0.5rem;
+height: 50px;
+}
+
+#cardcvv {
+width: 40%;
+}
+#cardexpirationDate {
+width: 40%;
+}
+.billing-address-form {
+display: flex;
+flex-direction: column;
+margin-bottom: 1rem;
+}
+
+.billing-address-form label {
+margin-bottom: 1.5rem;
+width: 80%;
+}
+
+.billing-address-form input[type="text"] {
+width: 100%;
+padding: 0.5rem;
+font-size: 1rem;
+border-radius: 0.25rem;
+border: 1px solid #ccc;
+box-sizing: border-box;
+margin-top: 0.5rem;
+height: 50px;
+}
+
+.billing-address-form select {
+width: 100%;
+padding: 0.5rem;
+font-size: 1rem;
+border-radius: 0.25rem;
+border: 1px solid #ccc;
+box-sizing: border-box;
+margin-top: 0.5rem;
+height: 50px;
+}
+
+select:disabled {
+background-color: #e0e0e0;
+}
+
+.agreement {
+display: inline-block;
+vertical-align: middle;
+position: relative;
+margin-right: 1rem;
+margin-bottom: 1.5rem;
+}
+
+.agreement input[type="checkbox"] {
+opacity: 0;
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+cursor: pointer;
+}
+
+.agreement label {
+position: relative;
+padding-left: 2rem;
+cursor: pointer;
+font-size: 1rem;
+}
+
+.agreement label:before {
+content: '';
+display: inline-block;
+position: absolute;
+left: 0;
+top: 0;
+width: 1.5rem;
+height: 1.5rem;
+border: 1px solid #aaa;
+border-radius: 0.25rem;
+box-sizing: border-box;
+}
+
+.agreement input[type="checkbox"]:checked + label:before {
+content: '\2611';
+color: #fff;
+background-color: #007bff;
+text-align: center;
+line-height: 1.5rem;
+}
+
+.buy-button button {
+background-color: black;
+color: white;
+border: none;
+border-radius: 0.25rem;
+padding: 0.5rem 1rem;
+font-size: 1rem;
+cursor: pointer;
+width: 50%;
+height: 50px;
+}
+
+
+
+.order-summary {
+  width: 35%;
+  height: 300px;
+  background-color: #f2f2f2;
+  padding: 0px 20px 0px 20px;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 16pt;
+}
+
+.split-line {
+    border: 1px solid lightgray;
+}
+
+.summary div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px
+}
+
+.summary div label {
+    margin: 5px 0px 5px 0px;
+}
+
+.values {
+  font-weight: bold;
+}
+
+.sum-total {
+  font-size: 18pt;
+}
+@media screen and (max-width: 768px) {
+  .button {
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .button {
+    height: 100px;
+    font-size: 18px;
+  }
+  
+}
